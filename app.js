@@ -4,6 +4,13 @@ const express = require("express");
 const app = express();
 // 9. import routes
 const userRoutes = require('./routes/user')
+// 10. import morgan for logging data in console
+const morgan = require('morgan')
+// 11. import body parser
+const bodyParser = require('body-parser')
+// 13. import cookie parser - we save user credentials in a cookie
+const cookieParser = require('cookie-parser')
+
 // 7. import mongoose
 const mongoose = require("mongoose");
 // 3. allowing to use .env varialbes
@@ -13,13 +20,19 @@ require("dotenv").config();
 mongoose
   .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useCreateIndex: true
   })
   .then(() => console.log("DB Connected"));
 
 mongoose.connection.on("error", err => {
   console.log(`DB connection error: ${err.message}`);
 });
+
+// 12. using middlewares
+app.use(morgan('dev'))
+app.use(bodyParser.json())
+app.use(cookieParser())
 
 // 4. routes middleware from routes folder
 app.use('/api',userRoutes)
