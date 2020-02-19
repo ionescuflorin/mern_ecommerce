@@ -2,6 +2,8 @@
 const express = require("express");
 // 2. instantiate express in order to have an express app
 const app = express();
+// 9. import routes
+const userRoutes = require('./routes/user')
 // 7. import mongoose
 const mongoose = require("mongoose");
 // 3. allowing to use .env varialbes
@@ -19,10 +21,8 @@ mongoose.connection.on("error", err => {
   console.log(`DB connection error: ${err.message}`);
 });
 
-// 4. handling requests for '/'
-app.get("/", (req, res) => {
-  res.send("Hello");
-});
+// 4. routes middleware from routes folder
+app.use('/api',userRoutes)
 
 // 5. which port we want to run our server
 const port = process.env.PORT || 8000;
