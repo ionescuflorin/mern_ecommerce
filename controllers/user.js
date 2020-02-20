@@ -6,6 +6,9 @@ const jwt = require('jsonwebtoken')
 const expressJwt = require('express-jwt')
 const {errorHandler} = require('../helpers/dbErrorHandler')
 
+const dotenv = require("dotenv");
+dotenv.config();
+
 exports.signup = (req, res) => {
     // create new user based on what we get from the request body
     // console.log('req.body', req.body);
@@ -56,3 +59,8 @@ exports.signout = (req, res) => {
     res.json({message: "Signout Success"})
 
 }
+
+exports.requireSignin = expressJwt({
+    secret: process.env.JWT_SECRET,
+    userProperty: 'auth'
+});
