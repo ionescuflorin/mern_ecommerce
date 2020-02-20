@@ -53,6 +53,7 @@ userSchema
   });
 
 userSchema.methods = {
+  // create authenticate method in user model
   authenticate: function(plainText) {
       return this.encryptPassword(plainText) === this.hashed_password;
   },
