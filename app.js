@@ -1,7 +1,7 @@
 // 1. import express
 const express = require("express");
 // 9. import routes
-const userRoutes = require('./routes/user')
+const authRoutes = require('./routes/auth')
 // 10. import morgan for logging data in console
 const morgan = require('morgan')
 // 11. import body parser
@@ -38,7 +38,7 @@ app.use(cookieParser())
 app.use(expressValidator());
 
 // 4. routes middleware from routes folder
-app.use('/api', userRoutes);
+app.use('/api', authRoutes);
 
 
 // 5. which port we want to run our server
