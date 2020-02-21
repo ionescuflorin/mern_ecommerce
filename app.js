@@ -4,6 +4,7 @@ const express = require("express");
 const authRoutes = require('./routes/auth')
 const userRoutes = require('./routes/user')
 const categoryRoutes = require('./routes/category')
+const productRoutes = require('./routes/product')
 // 10. import morgan for logging data in console
 const morgan = require('morgan')
 // 11. import body parser
@@ -43,6 +44,7 @@ app.use(expressValidator());
 app.use('/api', authRoutes);
 app.use('/api', userRoutes);
 app.use('/api', categoryRoutes);
+app.use('/api', productRoutes);
 
 // 5. which port we want to run our server
 const port = process.env.PORT || 8000;
