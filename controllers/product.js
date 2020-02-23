@@ -245,3 +245,12 @@ exports.update = (req, res) => {
             });
         });
 };
+
+// for every request we will request the photo so it will be acting as a middleware
+exports.photo = (req, res, next) => {
+  if(res.product.photo.data) {
+    res.set('Content-Type', req.product.photo.contentType)
+    return res.send(req.product.photo.data)
+  }
+  next()
+}
