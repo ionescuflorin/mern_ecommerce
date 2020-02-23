@@ -11,6 +11,7 @@ const morgan = require('morgan')
 const bodyParser = require('body-parser')
 // 13. import cookie parser - we save user credentials in a cookie
 const cookieParser = require('cookie-parser')
+const cors = require('cors')
 // 14. import express validator
 const expressValidator = require('express-validator')
 
@@ -39,6 +40,7 @@ app.use(morgan('dev'))
 app.use(bodyParser.json())
 app.use(cookieParser())
 app.use(expressValidator());
+app.use(cors());
 
 // 4. routes middleware from routes folder
 app.use('/api', authRoutes);
